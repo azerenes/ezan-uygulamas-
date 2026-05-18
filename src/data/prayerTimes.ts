@@ -64,22 +64,24 @@ function calculatePrayerTimes(
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
 
-  const d = (2 * Math.PI / 365) * (day + (month - 1) * 30);
-  const declination =
-    0.4095 * Math.sin(d - 1.39);
-  const timeOffset = lon / 15;
-  const equation =
-    0.0052 * Math.sin(2 * d - 1.43) - 0.0061 * Math.sin(d + 0.34);
+  const dayOfYear = Math.floor(
+    275 * month / 9 - 2 * Math.floor((month + 9) / 12) +
+    Math.floor((month + 9) % 12 / 10) * (Math.floor((year - Math.floor(year / 4) * 4 + 4) / 4) - 1) +
+    day - 30
+  );
+
+  const d = (2 * Math.PI / 365) * dayOfYear;
+  const declination = 0.4095 * Math.sin(d - 1.39);
 
   const latRad = lat * (Math.PI / 180);
   const declRad = declination;
 
-  function hourAngle(angle: number): number {
-    const cosHa =
-      (Math.sin(angle * (Math.PI / 180)) -
-        Math.sin(latRad) * Math.sin(declRad)) /
+  function hourAngle(altitudeDeg: number): number {
+    const sinAlt = Math.sin(altitudeDeg * (Math.PI / 180));
+    const cosHa = (sinAlt - Math.sin(latRad) * Math.sin(declRad)) /
       (Math.cos(latRad) * Math.cos(declRad));
-    if (Math.abs(cosHa) > 1) return 0;
+    if (cosHa > 1) return 0;
+    if (cosHa < -1) return Math.PI;
     return Math.acos(cosHa);
   }
 
@@ -89,16 +91,29 @@ function calculatePrayerTimes(
     return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
   }
 
-  const noon = 12 - timeOffset - equation;
-  const sunrise = noon - hourAngle(90.833) * (180 / Math.PI) / 15;
-  const sunset = noon + hourAngle(90.833) * (180 / Math.PI) / 15;
-  const fajr = noon - hourAngle(108) * (180 / Math.PI) / 15;
-  const isha = noon + hourAngle(108) * (180 / Math.PI) / 15;
+  const timezoneOffset = 3;
+  const timeOffset = lon / 15;
+  const equation =
+    0.0052 * Math.sin(2 * d - 1.43) - 0.0061 * Math.sin(d + 0.34);
+
+  const noonUtc = 12 - timeOffset - equation;
+
+  const sunriseHa = hourAngle(-0.833);
+  const sunsetHa = hourAngle(-0.833);
+  const fajrHa = hourAngle(-18);
+  const ishaHa = hourAngle(-18);
+
   const asrFactor = 1 / Math.tan(Math.atan(1 + Math.tan(Math.abs(latRad - declRad))));
-  const asr = noon + Math.acos(
-    (Math.sin(Math.atan(asrFactor)) - Math.sin(latRad) * Math.sin(declRad)) /
-      (Math.cos(latRad) * Math.cos(declRad))
-  ) * (180 / Math.PI) / 15;
+  const cosAsr = (Math.sin(Math.atan(asrFactor)) - Math.sin(latRad) * Math.sin(declRad)) /
+    (Math.cos(latRad) * Math.cos(declRad));
+  const asrHa = Math.acos(Math.max(-1, Math.min(1, cosAsr)));
+
+  const fajr = noonUtc - fajrHa * (180 / Math.PI) / 15 + timezoneOffset;
+  const sunrise = noonUtc - sunriseHa * (180 / Math.PI) / 15 + timezoneOffset;
+  const noon = noonUtc + timezoneOffset;
+  const asr = noonUtc + asrHa * (180 / Math.PI) / 15 + timezoneOffset;
+  const sunset = noonUtc + sunsetHa * (180 / Math.PI) / 15 + timezoneOffset;
+  const isha = noonUtc + ishaHa * (180 / Math.PI) / 15 + timezoneOffset;
 
   return [
     { name: "İmsak", arabic: "الفجر", time: toTime(fajr), icon: "🌅" },
@@ -112,7 +127,6 @@ function calculatePrayerTimes(
 
 export function getPrayerTimes(lat: number, lon: number): PrayerTimings {
   const prayers = calculatePrayerTimes(lat, lon);
-  const cityName = "";
   return {
     date: getGregorianDate(),
     hijri: getHijriDate(),

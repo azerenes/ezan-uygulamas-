@@ -182,7 +182,7 @@ export default function QuranScreen() {
         <View style={[styles.infoCard, { backgroundColor: colors.surface, borderColor: colors.border, marginTop: 16 }]}>
           <Text style={[styles.infoTitle, { color: colors.fg }]}>📖 114 Sure</Text>
           <Text style={[styles.infoDesc, { color: colors.muted }]}>
-            Kur'an-ı Kerim'de 114 sure, 6236 ayet bulunur. Uygulamada tüm surelerin listesi, 52 günlük ayet ve 28 İslami soru-cevap mevcuttur. Ayet ve sureleri Ana Sayfa'da görebilirsin.
+            Kur'an-ı Kerim'de 114 sure, 6236 ayet bulunur. Uygulamada tüm sureler, 104 günlük ayet ve 46 İslami soru-cevap mevcuttur. Ayet ve sureleri Ana Sayfa'da görebilirsin.
           </Text>
         </View>
       </ScrollView>

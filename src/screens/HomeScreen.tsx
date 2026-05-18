@@ -148,7 +148,7 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
               <Text style={styles.qaIconText}>🕋</Text>
             </View>
             <Text style={[styles.qaLabel, { color: colors.muted }]}>Dua</Text>
-            <Text style={[styles.qaValue, { color: colors.fg }]}>60</Text>
+            <Text style={[styles.qaValue, { color: colors.fg }]}>85</Text>
           </TouchableOpacity>
         </View>
       </View>
