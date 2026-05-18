@@ -228,10 +228,74 @@ export const dailyAyahs: Ayah[] = [
   { id: "102", text: "إِنَّ مَعَ الْعُسْرِ يُسْرًا", translation: "Zorlukla beraber bir kolaylık vardır.", surah: "İnşirah", ayah: "6" },
   { id: "103", text: "فَإِذَا فَرَغْتَ فَانْصَبْ", translation: "Boş kaldığında yine kalk (ibadete) yönel.", surah: "İnşirah", ayah: "7" },
   { id: "104", text: "وَإِلَىٰ رَبِّكَ فَارْغَبْ", translation: "Ve yalnız Rabbine yönel.", surah: "İnşirah", ayah: "8" },
+  { id: "105", text: "رَبَّنَا تَقَبَّلْ مِنَّا ۖ إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ", translation: "Rabbimiz! Bizden kabul buyur. Şüphesiz sen işiten ve bilensin.", surah: "Bakara", ayah: "127" },
+  { id: "106", text: "إِنَّمَا يُرِيدُ الشَّيْطَانُ أَنْ يُوقِعَ بَيْنَكُمُ الْعَدَاوَةَ وَالْبَغْضَاءَ", translation: "Şeytan, aranıza düşmanlık ve kin sokmak ister.", surah: "Maide", ayah: "91" },
+  { id: "107", text: "وَلَا تَقْرَبُوا مَالَ الْيَتِيمِ إِلَّا بِالَّتِي هِيَ أَحْسَنُ", translation: "Yetim malına, en güzel şeklin dışında yaklaşmayın.", surah: "En'am", ayah: "152" },
+  { id: "108", text: "قُلْ يَا أَيُّهَا الْكَافِرُونَ لَا أَعْبُدُ مَا تَعْبُدُونَ", translation: "De ki: Ey kafirler! Ben sizin taptıklarınıza tapmam.", surah: "Kafirun", ayah: "1-2" },
+  { id: "109", text: "وَمَا أُوتِيتُمْ مِنَ الْعِلْمِ إِلَّا قَلِيلًا", translation: "Size ilimden ancak az bir şey verilmiştir.", surah: "İsra", ayah: "85" },
+  { id: "110", text: "وَلَا تَحْسَبَنَّ الَّذِينَ قُتِلُوا فِي سَبِيلِ اللَّهِ أَمْوَاتًا", translation: "Allah yolunda öldürülenleri sakın ölü sanma!", surah: "Ali İmran", ayah: "169" },
+  { id: "111", text: "لَا يُحِبُّ اللَّهُ الْمُفْسِدِينَ", translation: "Allah bozguncuları sevmez.", surah: "Kasas", ayah: "77" },
+  { id: "112", text: "إِنَّ اللَّهَ يُحِبُّ الَّذِينَ يُقَاتِلُونَ فِي سَبِيلِهِ صَفًّا", translation: "Allah, kendi yolunda saf bağlayarak savaşanları sever.", surah: "Saf", ayah: "4" },
+  { id: "113", text: "فَمَنْ شَاءَ فَلْيُؤْمِنْ وَمَنْ شَاءَ فَلْيَكْفُرْ", translation: "Dileyen iman etsin, dileyen inkâr etsin.", surah: "Kehf", ayah: "29" },
+  { id: "114", text: "وَمَا الْحَيَاةُ الدُّنْيَا فِي الْآخِرَةِ إِلَّا مَتَاعٌ", translation: "Dünya hayatı ahirete göre sadece geçici bir faydadır.", surah: "Ra'd", ayah: "26" },
+  { id: "115", text: "إِنَّ الْإِنْسَانَ خُلِقَ هَلُوعًا", translation: "İnsan hırslı ve sabırsız yaratılmıştır.", surah: "Me'aric", ayah: "19" },
+  { id: "116", text: "وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِنْ مُدَّكِرٍ", translation: "Andolsun, Kur'an'ı öğüt almak için kolaylaştırdık. Yok mu öğüt alan?", surah: "Kamer", ayah: "17" },
+  { id: "117", text: "سَنُرِيهِمْ آيَاتِنَا فِي الْآفَاقِ وَفِي أَنْفُسِهِمْ", translation: "Ayetlerimizi onlara hem dış dünyada hem de kendi içlerinde göstereceğiz.", surah: "Fussilet", ayah: "53" },
+  { id: "118", text: "فَأَقِمْ وَجْهَكَ لِلدِّينِ حَنِيفًا", translation: "Hanif (dosdoğru) olarak dine yönel.", surah: "Rum", ayah: "30" },
+  { id: "119", text: "أَلَا يَعْلَمُ مَنْ خَلَقَ وَهُوَ اللَّطِيفُ الْخَبِيرُ", translation: "Yaratan bilmez mi? O, en gizli şeyleri bilir, her şeyden haberdardır.", surah: "Mülk", ayah: "14" },
+  { id: "120", text: "وَاللَّهُ يَقْضِي بِالْحَقِّ وَالَّذِينَ يَدْعُونَ مِنْ دُونِهِ لَا يَقْضُونَ بِشَيْءٍ", translation: "Allah adaletle hükmeder. O'ndan başka yalvardıkları ise hiçbir şeye hükmedemezler.", surah: "Mümin", ayah: "20" },
+  { id: "121", text: "لَا إِكْرَاهَ فِي الدِّينِ ۖ قَدْ تَبَيَّنَ الرُّشْدُ مِنَ الْغَيِّ", translation: "Dinde zorlama yoktur. Doğruluk sapıklıktan apaçık ayrılmıştır.", surah: "Bakara", ayah: "256" },
+  { id: "122", text: "يَا أَيُّهَا الَّذِينَ آمَنُوا قُوا أَنْفُسَكُمْ وَأَهْلِيكُمْ نَارًا", translation: "Ey iman edenler! Kendinizi ve ailenizi yakıtı insan ve taş olan ateşten koruyun.", surah: "Tahrim", ayah: "6" },
+  { id: "123", text: "وَلَا تَبْخَسُوا النَّاسَ أَشْيَاءَهُمْ", translation: "İnsanların hakkını eksik vermeyin.", surah: "Şuara", ayah: "183" },
+  { id: "124", text: "إِنَّ الْإِنْسَانَ لَرَبِّهِ لَكَنُودٌ", translation: "İnsan Rabbine karşı pek nankördür.", surah: "Adiyat", ayah: "6" },
+  { id: "125", text: "فَوَيْلٌ لِلْمُصَلِّينَ الَّذِينَ هُمْ عَنْ صَلَاتِهِمْ سَاهُونَ", translation: "Yazıklar olsun o namaz kılanlara ki, namazlarından gafildirler.", surah: "Maun", ayah: "4-5" },
+  { id: "126", text: "أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ", translation: "Dini yalanlayanı gördün mü? İşte o, yetimi itip kalkandır.", surah: "Maun", ayah: "1-2" },
+  { id: "127", text: "وَلَلْآخِرَةُ خَيْرٌ لَكَ مِنَ الْأُولَىٰ", translation: "Elbette ahiret senin için dünyadan daha hayırlıdır.", surah: "Duha", ayah: "4" },
+  { id: "128", text: "أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ", translation: "Senin göğsünü açıp genişletmedik mi?", surah: "İnşirah", ayah: "1" },
+  { id: "129", text: "إِنَّ مَعَ الْعُسْرِ يُسْرًا", translation: "Elbette zorluğun yanında bir kolaylık vardır.", surah: "İnşirah", ayah: "5" },
+  { id: "130", text: "فَصَلِّ لِرَبِّكَ وَانْحَرْ", translation: "Rabbin için namaz kıl ve kurban kes.", surah: "Kevser", ayah: "2" },
+  { id: "131", text: "إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ", translation: "Sana buğzeden, soyu kesik olanın ta kendisidir.", surah: "Kevser", ayah: "3" },
+  { id: "132", text: "إِنَّ الْأَبْرَارَ لَفِي نَعِيمٍ", translation: "İyiler elbette nimet içindedirler.", surah: "İnfitar", ayah: "13" },
+  { id: "133", text: "وَإِنَّ الْفُجَّارَ لَفِي جَحِيمٍ", translation: "Kötüler ise cehennemdedirler.", surah: "İnfitar", ayah: "14" },
+  { id: "134", text: "وَأَمَّا بِنِعْمَةِ رَبِّكَ فَحَدِّثْ", translation: "Rabbinin nimetine gelince, onu anlat.", surah: "Duha", ayah: "11" },
+  { id: "135", text: "فَلَا تَقُلْ لَهُمَا أُفٍّ وَلَا تَنْهَرْهُمَا", translation: "Onlara (anne-babana) öf bile deme, onları azarlama.", surah: "İsra", ayah: "23" },
+  { id: "136", text: "لِيُنْفِقْ ذُو سَعَةٍ مِنْ سَعَتِهِ", translation: "Geniş imkanı olan, genişliğine göre harcasın.", surah: "Talak", ayah: "7" },
+  { id: "137", text: "إِنَّ اللَّهَ سَمِيعٌ بَصِيرٌ", translation: "Şüphesiz Allah işitendir, görendir.", surah: "Mücadele", ayah: "1" },
+  { id: "138", text: "فَإِذَا قُضِيَتِ الصَّلَاةُ فَانْتَشِرُوا فِي الْأَرْضِ", translation: "Namaz kılınınca yeryüzüne dağılın ve Allah'ın lütfundan arayın.", surah: "Cum'a", ayah: "10" },
+  { id: "139", text: "وَذَرُوا الْبَيْعَ ۖ ذَٰلِكُمْ خَيْرٌ لَكُمْ", translation: "Alışverişi bırakın. Eğer bilirseniz bu sizin için daha hayırlıdır.", surah: "Cum'a", ayah: "9" },
+  { id: "140", text: "قُلْ لَنْ يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا", translation: "De ki: Allah'ın bizim için yazdığından başkası bize asla erişmez.", surah: "Tevbe", ayah: "51" },
+  { id: "141", text: "أَلَا إِنَّ أَوْلِيَاءَ اللَّهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ", translation: "Bilesiniz ki Allah'ın dostlarına korku yoktur, onlar üzülmezler de.", surah: "Yunus", ayah: "62" },
+  { id: "142", text: "وَلَا يَأْتَلِ أُولُو الْفَضْلِ مِنْكُمْ وَالسَّعَةِ أَنْ يُؤْتُوا أُولِي الْقُرْبَىٰ", translation: "Sizden faziletli ve varlıklı olanlar, yakınlarına vermemeye yemin etmesinler.", surah: "Nur", ayah: "22" },
+  { id: "143", text: "وَآتُوا الْيَتَامَىٰ أَمْوَالَهُمْ", translation: "Yetimlere mallarını verin.", surah: "Nisa", ayah: "2" },
+  { id: "144", text: "وَاللَّهُ خَيْرُ الرَّازِقِينَ", translation: "Allah rızık verenlerin en hayırlısıdır.", surah: "Cum'a", ayah: "11" },
+  { id: "145", text: "وَلَا تَجَسَّسُوا", translation: "Birbirinizin gizli yönlerini araştırmayın.", surah: "Hucurat", ayah: "12" },
+  { id: "146", text: "إِنْ أَكْرَمَكُمْ عِنْدَ اللَّهِ أَتْقَاكُمْ", translation: "Allah katında en değerli olanınız, takvaca en üstün olanınızdır.", surah: "Hucurat", ayah: "13" },
+  { id: "147", text: "وَالْعَصْرِ إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ", translation: "Asra yemin olsun ki insan hüsrandadır.", surah: "Asr", ayah: "1-2" },
+  { id: "148", text: "لَقَدْ خَلَقْنَا الْإِنْسَانَ فِي أَحْسَنِ تَقْوِيمٍ", translation: "Biz insanı en güzel şekilde yarattık.", surah: "Tin", ayah: "4" },
+  { id: "149", text: "ثُمَّ رَدَدْنَاهُ أَسْفَلَ سَافِلِينَ", translation: "Sonra onu aşağıların aşağısına çevirdik.", surah: "Tin", ayah: "5" },
+  { id: "150", text: "إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ فَلَهُمْ أَجْرٌ غَيْرُ مَمْنُونٍ", translation: "Ancak iman edip salih amel işleyenler hariç. Onlar için bitmeyen bir mükafat vardır.", surah: "Tin", ayah: "6" },
+  { id: "151", text: "فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ", translation: "O halde Rabbinizin hangi nimetlerini yalanlayabilirsiniz?", surah: "Rahman", ayah: "16" },
+  { id: "152", text: "يَخْرُجُ مِنْهُمَا اللُّؤْلُؤُ وَالْمَرْجَانُ", translation: "İkisinden (denizlerden) inci ve mercan çıkar.", surah: "Rahman", ayah: "22" },
+  { id: "153", text: "فَفِرُّوا إِلَى اللَّهِ", translation: "Haydi Allah'a kaçın (sığının)!", surah: "Zariyat", ayah: "50" },
 ];
 
+let lastAyahIndex = -1;
+
+export function getNextAyah(): Ayah {
+  const count = dailyAyahs.length;
+  if (count === 0) return { id: "0", text: "", translation: "", surah: "", ayah: "" };
+  const nextIdx = (lastAyahIndex + 1) % count;
+  lastAyahIndex = nextIdx;
+  return dailyAyahs[nextIdx];
+}
+
 export function getRandomAyah(): Ayah {
-  return dailyAyahs[Math.floor(Math.random() * dailyAyahs.length)];
+  let idx: number;
+  do {
+    idx = Math.floor(Math.random() * dailyAyahs.length);
+  } while (idx === lastAyahIndex && dailyAyahs.length > 1);
+  lastAyahIndex = idx;
+  return dailyAyahs[idx];
 }
 
 export function getSurahById(id: number) {

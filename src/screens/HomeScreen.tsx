@@ -13,7 +13,7 @@ import {
   getNextPrayerIndex,
   getCountdownTo,
 } from "../data/prayerTimes";
-import { getRandomAyah, type Ayah } from "../data/ayahs";
+import { getNextAyah, type Ayah } from "../data/ayahs";
 
 export default function HomeScreen({ navigation }: { navigation: any }) {
   const { colors, isDark } = useTheme();
@@ -22,7 +22,7 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
   const { prayers } = data;
   const [countdown, setCountdown] = useState("00:00:00");
   const [nextIdx, setNextIdx] = useState(0);
-  const [currentAyah, setCurrentAyah] = useState<Ayah>(getRandomAyah());
+  const [currentAyah, setCurrentAyah] = useState<Ayah>(getNextAyah());
   const now = new Date();
   const currentMins = now.getHours() * 60 + now.getMinutes();
 
@@ -82,7 +82,7 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
             <Text style={[styles.ayahLabel, { color: colors.accent }]}>Günün Ayeti</Text>
             <TouchableOpacity
               style={[styles.refreshBtn, { backgroundColor: isDark ? colors.surfaceAlt : "#e6f2ed" }]}
-              onPress={() => setCurrentAyah(getRandomAyah())}
+              onPress={() => setCurrentAyah(getNextAyah())}
             >
               <Text style={{ fontSize: 12, color: colors.accent, fontWeight: "500" }}>🔄 Yenile</Text>
             </TouchableOpacity>

@@ -126,4 +126,82 @@ export const hadithAnswers: HadithAnswer[] = [
     answer: "Peygamberimiz (sav) Veda Hutbesi'nde 'Kadınların haklarını yerine getirin, onlara iyi davranın. Onlar sizin hayat arkadaşlarınızdır' buyurmuştur. 'Sizin en hayırlınız hanımına karşı en iyi davrananınızdır. Ben hanımına karşı en iyi davrananınızım' hadisi aile içinde kadına verilen değeri gösterir. 'Annen, annen, annen, sonra baban' hadisi kadının İslam'daki saygın yerini ortaya koyar.",
     source: "Tirmizî, Rada, 11; Buhârî, Edeb, 2"
   },
+  {
+    question: "Yetim ve öksüz",
+    keywords: ["yetim sevindir", "yetim bakmak"],
+    answer: "Peygamberimiz (sav) 'Kim bir yetimi veya bir yoksulu doyurursa, Allah onu cennet meyveleriyle doyurur' buyurmuştur. 'Ben ve yetime bakan kimse cennette şöyleyiz' buyurarak (şehadet ve orta parmağını gösterip) aralarını açmıştır. Yetimi sevindirmek, Allah katında büyük bir ibadettir ve sahibini birçok beladan korur.",
+    source: "Buhârî, Talak, 25; Müslim, Zühd, 42"
+  },
+  {
+    question: "Çocuk terbiyesi",
+    keywords: ["çocuk terbiyesi", "çocuk eğitimi"],
+    answer: "Peygamberimiz (sav) 'Hiçbir baba, çocuğuna güzel terbiyeden daha değerli bir miras bırakmamıştır' buyurmuştur. Çocuklara iyi davranmayı, onlarla şakalaşmayı ve onları sevmeyi tavsiye etmiştir. 'Çocuklarınıza ikramda bulunun ve onları güzelce terbiye edin' ve 'Küçüklerimize merhamet etmeyen, büyüklerimize saygı göstermeyen bizden değildir' hadisleri çocuk terbiyesinin önemini belirtir.",
+    source: "Tirmizî, Birr, 33; İbn Mâce, Edeb, 3"
+  },
+  {
+    question: "Akraba ziyareti",
+    keywords: ["akraba", "sıla", "sıla rahim"],
+    answer: "Peygamberimiz (sav) 'Sıla-i rahim (akraba ziyareti) malı çoğaltır ve ömrü uzatır' buyurmuştur. 'Rahm (akraba) ile ilişkiyi kesen cennete giremez' hadisi akraba ziyaretinin önemini gösterir. Kimin rızkının genişlemesini ve ömrünün uzamasını istiyorsa akrabasını ziyaret etsin buyrulmuştur. En küçük bir ziyaret bile büyük sevaptır.",
+    source: "Buhârî, Edeb, 12; Müslim, Birr, 20"
+  },
+  {
+    question: "İslam kardeşliği",
+    keywords: ["mümin kardeş", "islam kardeşliği"],
+    answer: "Peygamberimiz (sav) 'Mümin, müminin kardeşidir. Ona zulmetmez, onu yardımsız bırakmaz' buyurmuştur. 'Birbirinize buğz etmeyin, haset etmeyin, sırt çevirmeyin. Ey Allah'ın kulları! Kardeş olun' hadisi İslam kardeşliğinin temelini oluşturur. 'Müminler bir binanın tuğlaları gibi birbirini tutar' buyrulmuştur. Mümin birbirini seven, birbirine yardım eden bir bütündür.",
+    source: "Buhârî, Mezalim, 3; Müslim, Birr, 28"
+  },
+  {
+    question: "Su içme adabı",
+    keywords: ["su içmek", "içme adabı"],
+    answer: "Peygamberimiz (sav) su içerken üç nefeste içmeyi tavsiye etmiştir. 'Suyu üç nefeste için, kabın dışında (nefes alın) ve bir nefeste içmeyin' buyurmuştur. Ayrıca su içerken besmele çekmeyi ve bitince şükretmeyi tavsiye etmiştir. Ayakta su içmeyi ise zaman zaman yasaklamış, bazı durumlarda da izin vermiştir. Genel olarak oturarak içmek daha faziletlidir.",
+    source: "Müslim, Eşribe, 128; Tirmizî, Eşribe, 16"
+  },
+  {
+    question: "Cuma günü",
+    keywords: ["cuma", "cuma günü", "cuma namazı"],
+    answer: "Peygamberimiz (sav) 'Güneşin doğduğu en hayırlı gün Cuma günüdür' buyurmuştur. Cuma günü üzerine güzel koku sürünmek, misvak kullanmak, temiz elbise giymek sünnettir. Cuma namazına erken gitmek büyük sevaptır. 'Cuma günü imamın minberde olduğu andan namaz bitene kadar selamet bekleyenin günahları affolunur' buyrulmuştur. Cuma günü çok salevat getirmek de sünnettir.",
+    source: "Müslim, Cum'a, 5; Ebû Dâvûd, Salât, 226"
+  },
+  {
+    question: "Bayram sevinci",
+    keywords: ["bayram", "ramazan bayramı", "kurban bayramı"],
+    answer: "Peygamberimiz (sav) bayram günlerinde sevinci ve ibadeti birleştirmiştir. Bayram namazına giderken yoldan dönüşte farklı yol kullanılmasını tavsiye etmiştir. Bayramlarda birbirimize hediye vermek sevgiyi artırır. 'Bayram günlerinde çocukları sevindirin, Allah da sizi sevindirsin' buyrulmuştur. Bayramlar Müslümanlar arasında birlik ve beraberliğin pekiştiği günlerdir.",
+    source: "Buhârî, Iydeyn, 1; Tirmizî, Salât, 386"
+  },
+  {
+    question: "Kefen ve cenaze",
+    keywords: ["cenaze", "kefen", "defin", "ölü yıkama"],
+    answer: "Peygamberimiz (sav) cenaze namazının önemini vurgulamıştır. 'Kim bir cenaze namazı kılar, cenaze defnedilinceye kadar beklerse, bir dağ kadar sevap alır' buyurmuştur. Ölüyü yıkarken güzel davranılmasını, kefenin güzel olmasını ve cenaze namazına acele edilmesini tavsiye etmiştir. 'Ölülerinizi defnetmekte acele edin' buyrulmuştur. Cenaze sahiplerine sabır ve başsağlığı dilenmesi sünnettir.",
+    source: "Buhârî, Cenâiz, 51; Müslim, Cenâiz, 71"
+  },
+  {
+    question: "Rüya tabiri",
+    keywords: ["rüya", "rüya yorumu"],
+    answer: "Peygamberimiz (sav) 'Müminin rüyası peygamberliğin kırk altıda biridir' buyurmuştur. 'Üç türlü rüya vardır: Allah'tan gelen güzel rüya, şeytandan gelen korkulu rüya, kişinin kendi düşüncelerinden gelen rüya' buyrulmuştur. Güzel rüya görüldüğünde Allah'a hamd edilmesini, kötü rüya görüldüğünde sol tarafa üç kere tükürmeyi ve o rüyayı kimseye anlatmamayı tavsiye etmiştir.",
+    source: "Buhârî, Ta'bir, 4; Müslim, Rüya, 8"
+  },
+  {
+    question: "Sadaka çeşitleri",
+    keywords: ["sadaka çeşit", "sadaka vermek"],
+    answer: "Peygamberimiz (sav) sadakanın sadece mal ile olmadığını öğretmiştir. 'Her bir tesbih sadakadır, her bir tekbir sadakadır, her bir hamd sadakadır, her bir tehlil sadakadır. İyiliği emretmek sadakadır, kötülükten alıkoymak sadakadır. Kişinin hanımıyla cinsel münasebeti bile sadakadır' buyurmuştur. Gülümsemek, yoldaki engeli kaldırmak da sadakadır.",
+    source: "Müslim, Zekat, 56; Buhârî, Edeb, 33"
+  },
+  {
+    question: "İhlas ve niyet",
+    keywords: ["ihlas", "niyet", "samimiyet"],
+    answer: "Peygamberimiz (sav) 'Ameller niyetlere göredir. Herkes niyetine göre karşılık alır' buyurmuştur. Bu hadis İslam'ın temel hadislerindendir ve amellerin değerinin niyete bağlı olduğunu gösterir. 'Allah sizin suretlerinize ve mallarınıza değil, kalplerinize ve amellerinize bakar' buyrulmuştur. İhlas ile yapılan az amel bile Allah katında değerlidir.",
+    source: "Buhârî, İman, 41; Müslim, İman, 155"
+  },
+  {
+    question: "Borç ödeme",
+    keywords: ["borç", "borç ödemek", "borçlu"],
+    answer: "Peygamberimiz (sav) borcu vaktinde ödemeyi tavsiye etmiş, borç ertelemeyi hoş karşılamamıştır. 'Zengin kişinin borcunu ertelemesi zulümdür' buyurmuştur. Kim borçlu olarak ölürse, cenaze namazını kılmamış, borcun ödenmesini istemiştir. 'Kim insanların malını ödemek niyetiyle alırsa, Allah ona ödemeyi kolaylaştırır. Kim de telef etmek niyetiyle alırsa, Allah onu mahveder' buyrulmuştur.",
+    source: "Buhârî, İstikraz, 12; Müslim, Müsakat, 34"
+  },
+  {
+    question: "Gıybet ve iftira",
+    keywords: ["gıybet hadis", "iftira hadis"],
+    answer: "Peygamberimiz (sav) gıybeti şiddetle yasaklamıştır. 'Gıybet nedir bilir misiniz?' diye sormuş, 'Allah ve Resulü daha iyi bilir' dediklerinde 'Kardeşini hoşlanmadığı bir şeyle anmandır' buyurmuştur. 'Gerçekse söylediğin' denilince 'Söylediğin şey onda varsa gıybet etmiş olursun, yoksa iftira etmiş olursun' buyurmuştur. Gıybet, kişiyi cehenneme götüren büyük günahlardandır.",
+    source: "Müslim, Birr, 84; Tirmizî, Birr, 22"
+  },
 ];

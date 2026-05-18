@@ -190,9 +190,9 @@ export default function QuranScreen() {
         </View>
 
         <View style={[styles.infoCard, { backgroundColor: colors.surface, borderColor: colors.border, marginTop: 16 }]}>
-          <Text style={[styles.infoTitle, { color: colors.fg }]}>📖 114 Sure · 104 Ayet · 20 Hadis</Text>
+          <Text style={[styles.infoTitle, { color: colors.fg }]}>📖 114 Sure · 153 Ayet · 30 Hadis</Text>
           <Text style={[styles.infoDesc, { color: colors.muted }]}>
-            Kur'an-ı Kerim'de 114 sure, 6236 ayet bulunur. Uygulamada tüm sureler, 104 günlük ayet, İslami soru-cevaplar ve 20 hadis mevcuttur. Hadisleri aç/kapa butonu ile kontrol edebilirsin. Ayet ve sureleri Ana Sayfa'da görebilirsin.
+            Kur'an-ı Kerim'de 114 sure, 6236 ayet bulunur. Uygulamada tüm sureler, 153 günlük ayet, İslami soru-cevaplar ve 30 hadis mevcuttur. Hadisleri aç/kapa butonu ile kontrol edebilirsin. Ayet ve sureleri Ana Sayfa'da görebilirsin.
           </Text>
         </View>
       </ScrollView>
