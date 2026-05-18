@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Text, View } from "react-native";
-import { colors } from "../utils/theme";
+import { useTheme } from "../context/ThemeContext";
 
 import HomeScreen from "../screens/HomeScreen";
 import PrayerTimesScreen from "../screens/PrayerTimesScreen";
@@ -25,15 +25,15 @@ function TabIcon({ label, focused }: { label: string; focused: boolean }) {
     Ayarlar: "⚙",
   };
   return (
-    <View style={{ alignItems: "center", justifyContent: "center", gap: 2 }}>
-      <Text style={{ fontSize: 22, opacity: focused ? 1 : 0.5 }}>
-        {icons[label] || "•"}
-      </Text>
-    </View>
+    <Text style={{ fontSize: 22, opacity: focused ? 1 : 0.5 }}>
+      {icons[label] || "•"}
+    </Text>
   );
 }
 
 function HomeTabs() {
+  const { colors } = useTheme();
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -66,12 +66,28 @@ function HomeTabs() {
 }
 
 export default function AppNavigator() {
+  const { colors, isDark } = useTheme();
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeTabs} />
-        <Stack.Screen name="Kıble" component={QiblaScreen} />
-        <Stack.Screen name="KuranAI" component={QuranScreen} />
+        <Stack.Screen
+          name="Kıble"
+          component={QiblaScreen}
+          options={{
+            presentation: "card",
+            animation: "slide_from_right",
+          }}
+        />
+        <Stack.Screen
+          name="KuranAI"
+          component={QuranScreen}
+          options={{
+            presentation: "card",
+            animation: "slide_from_right",
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

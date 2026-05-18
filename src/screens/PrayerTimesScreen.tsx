@@ -1,182 +1,102 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
-import { colors } from "../utils/theme";
-import { prayerTimesData } from "../data/prayerTimes";
+import { useTheme } from "../context/ThemeContext";
+import { useLocation } from "../context/LocationContext";
+import { getPrayerTimes, getNextPrayerIndex } from "../data/prayerTimes";
 
 export default function PrayerTimesScreen() {
-  const { prayers } = prayerTimesData;
+  const { colors, isDark } = useTheme();
+  const { location } = useLocation();
+  const data = getPrayerTimes(location.lat, location.lon);
+  const { prayers } = data;
   const now = new Date();
-  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  const currentMins = now.getHours() * 60 + now.getMinutes();
+  const activeIdx = getNextPrayerIndex(prayers);
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Vakitler</Text>
-      </View>
-
-      <View style={styles.locationBar}>
-        <Text style={styles.locationText}>
-          📍 <Text style={styles.locationStrong}>{prayerTimesData.location}</Text> · {prayerTimesData.method}
-        </Text>
-      </View>
-
-      <View style={styles.monthNav}>
-        <TouchableOpacity style={styles.monthNavBtn}>
-          <Text style={styles.monthNavBtnText}>←</Text>
-        </TouchableOpacity>
-        <Text style={styles.monthName}>Mayıs 2026</Text>
-        <TouchableOpacity style={styles.monthNavBtn}>
-          <Text style={styles.monthNavBtnText}>→</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.prayerTable}>
-        <View style={styles.prayerTableHeader}>
-          <Text style={styles.pthText}>Vakit</Text>
-          <Text style={styles.pthText}>Vakit</Text>
-          <Text style={styles.pthText}>Güneş</Text>
-          <Text style={[styles.pthText, { textAlign: "right" }]}>Kalan</Text>
+    <ScrollView style={[styles.container, { backgroundColor: colors.bg }]}>
+      <View style={styles.content}>
+        <View style={styles.header}>
+          <Text style={[styles.headerTitle, { color: colors.fg }]}>Vakitler</Text>
         </View>
-        {prayers.map((p, i) => {
-          const [h, m] = p.time.split(":").map(Number);
-          const prayerMinutes = h * 60 + m;
-          const isCompleted = prayerMinutes < currentMinutes;
-          const isActive = prayerMinutes >= currentMinutes && (i === 0 || prayers[i - 1] ? (prayers[i - 1] ? currentMinutes >= (() => { const [ph, pm] = prayers[i - 1].time.split(":").map(Number); return ph * 60 + pm; })() : false) : true);
-          const activeIndex = prayers.findIndex((_, idx) => {
-            const [ph, pm] = prayers[idx].time.split(":").map(Number);
-            return ph * 60 + pm > currentMinutes;
-          });
-          const isRowActive = activeIndex >= 0 && i === activeIndex;
 
-          return (
-            <View
-              key={i}
-              style={[
-                styles.prayerRow,
-                isRowActive && styles.prayerRowActive,
-              ]}
-            >
-              <View style={styles.pNameRow}>
-                <Text style={styles.pName}>{p.name}</Text>
-                <Text style={styles.pArabic}>{p.arabic}</Text>
-              </View>
-              <Text style={[styles.pTime, isRowActive && styles.pTimeActive]}>
-                {p.time}
-              </Text>
-              <Text style={styles.pSunrise}>—</Text>
-              <Text
+        <View style={[styles.locationBar, { backgroundColor: colors.surfaceAlt }]}>
+          <Text style={{ fontSize: 13, color: colors.muted }}>
+            📍 <Text style={{ fontWeight: "600", color: colors.fg }}>{location.city}, {location.district}</Text> · {data.method}
+          </Text>
+        </View>
+
+        <View style={[styles.monthNav, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+          <TouchableOpacity style={[styles.monthNavBtn, { backgroundColor: colors.bg }]}>
+            <Text style={{ fontSize: 16, color: colors.muted }}>←</Text>
+          </TouchableOpacity>
+          <Text style={[styles.monthName, { color: colors.fg }]}>
+            {new Date().toLocaleString("tr-TR", { month: "long", year: "numeric" })}
+          </Text>
+          <TouchableOpacity style={[styles.monthNavBtn, { backgroundColor: colors.bg }]}>
+            <Text style={{ fontSize: 16, color: colors.muted }}>→</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={[styles.prayerTable, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+          <View style={[styles.prayerTableHeader, { backgroundColor: isDark ? colors.surfaceAlt : "#eef5f2" }]}>
+            <Text style={[styles.pthText, { color: colors.muted }]}>Vakit</Text>
+            <Text style={[styles.pthText, { color: colors.muted }]}>Vakit</Text>
+            <Text style={[styles.pthText, { color: colors.muted }]}>Kalan</Text>
+          </View>
+          {prayers.map((p, i) => {
+            const isActive = i === activeIdx;
+            return (
+              <View
+                key={i}
                 style={[
-                  styles.pDiff,
-                  isRowActive && { color: colors.accent, fontWeight: "600" },
+                  styles.prayerRow,
+                  isActive && { backgroundColor: isDark ? "rgba(59,201,159,0.1)" : "rgba(46,168,133,0.08)" },
                 ]}
               >
-                {isRowActive ? "02:34" : "--"}
-              </Text>
-            </View>
-          );
-        })}
-      </View>
+                <View style={styles.pNameRow}>
+                  <Text style={[styles.pName, { color: isActive ? colors.accent : colors.fg }]}>
+                    {p.name}
+                  </Text>
+                  <Text style={[styles.pArabic, { color: colors.muted }]}>{p.arabic}</Text>
+                </View>
+                <Text style={[styles.pTime, { color: isActive ? colors.accent : colors.muted }]}>
+                  {p.time}
+                </Text>
+                <Text style={[styles.pDiff, { color: isActive ? colors.accent : colors.muted }, isActive && { fontWeight: "600" }]}>
+                  {isActive ? "← Şimdi" : "--"}
+                </Text>
+              </View>
+            );
+          })}
+        </View>
 
-      <View style={styles.calcMethod}>
-        <Text style={{ fontSize: 12, color: colors.muted }}>
-          Hesaplama Yöntemi
-        </Text>
-        <Text style={{ fontSize: 12, fontWeight: "600", color: colors.fg }}>
-          {prayerTimesData.method}
-        </Text>
+        <View style={[styles.calcMethod, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+          <Text style={{ fontSize: 12, color: colors.muted }}>Hesaplama Yöntemi</Text>
+          <Text style={{ fontSize: 12, fontWeight: "600", color: colors.fg }}>{data.method}</Text>
+        </View>
       </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.bg },
+  container: { flex: 1 },
   content: { padding: 16, paddingBottom: 32 },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    paddingVertical: 4,
-    marginBottom: 8,
-  },
-  headerTitle: { fontSize: 20, fontWeight: "700", color: colors.fg },
-  locationBar: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 12,
-    backgroundColor: colors.surfaceAlt,
-    borderRadius: 12,
-    marginBottom: 12,
-  },
-  locationText: { fontSize: 13, color: colors.muted, flex: 1 },
-  locationStrong: { color: colors.fg, fontWeight: "600" },
-  monthNav: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: 12,
-    backgroundColor: colors.surface,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: colors.border,
-    marginBottom: 12,
-  },
-  monthNavBtn: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: colors.bg,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  monthNavBtnText: { fontSize: 16, color: colors.muted },
-  monthName: { fontSize: 16, fontWeight: "600", color: colors.fg },
-  prayerTable: {
-    backgroundColor: colors.surface,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: colors.border,
-    overflow: "hidden",
-    marginBottom: 12,
-  },
-  prayerTableHeader: {
-    flexDirection: "row",
-    padding: 12,
-    backgroundColor: "#eef5f2",
-    gap: 8,
-  },
-  pthText: {
-    flex: 1,
-    fontSize: 11,
-    fontWeight: "600",
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-    color: colors.muted,
-  },
-  prayerRow: {
-    flexDirection: "row",
-    padding: 14,
-    gap: 8,
-    alignItems: "center",
-  },
-  prayerRowActive: {
-    backgroundColor: "rgba(46, 168, 133, 0.08)",
-  },
+  header: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 4, marginBottom: 8 },
+  headerTitle: { fontSize: 20, fontWeight: "700", flex: 1 },
+  locationBar: { padding: 12, borderRadius: 12, marginBottom: 12 },
+  monthNav: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 12, borderRadius: 12, borderWidth: 1, marginBottom: 12 },
+  monthNavBtn: { width: 36, height: 36, borderRadius: 18, alignItems: "center", justifyContent: "center" },
+  monthName: { fontSize: 16, fontWeight: "600" },
+  prayerTable: { borderRadius: 12, borderWidth: 1, overflow: "hidden", marginBottom: 12 },
+  prayerTableHeader: { flexDirection: "row", padding: 12, gap: 8 },
+  pthText: { flex: 1, fontSize: 11, fontWeight: "600", textTransform: "uppercase", letterSpacing: 0.5 },
+  prayerRow: { flexDirection: "row", padding: 14, gap: 8, alignItems: "center" },
   pNameRow: { flex: 1 },
-  pName: { fontSize: 14, fontWeight: "500", color: colors.fg },
-  pArabic: { fontSize: 12, color: colors.muted },
-  pTime: { width: 70, fontSize: 14, fontWeight: "600", color: colors.muted },
-  pTimeActive: { color: colors.accent },
-  pSunrise: { width: 70, fontSize: 13, color: colors.muted },
-  pDiff: { width: 70, fontSize: 11, color: colors.muted, textAlign: "right" },
-  calcMethod: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: 10,
-    backgroundColor: colors.surface,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
+  pName: { fontSize: 14, fontWeight: "500" },
+  pArabic: { fontSize: 12 },
+  pTime: { width: 70, fontSize: 14, fontWeight: "600" },
+  pDiff: { width: 70, fontSize: 12, textAlign: "right" },
+  calcMethod: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 10, borderRadius: 12, borderWidth: 1 },
 });
