@@ -25,6 +25,7 @@ export default function SettingsScreen() {
   const [ezanSound, setEzanSound] = useState(true);
   const [reminder, setReminder] = useState(false);
   const [silentMode, setSilentMode] = useState(false);
+  const [dailyAyah, setDailyAyah] = useState(false);
   const [showLocationModal, setShowLocationModal] = useState(false);
 
   const groupedLocations = locations.reduce(
@@ -112,17 +113,17 @@ export default function SettingsScreen() {
             label="Günün Ayeti"
             desc="Günde 2 kez ayet bildirimi (09:00 / 21:00)"
             value={
-              <TouchableOpacity
-                style={[styles.actionBtn, { backgroundColor: "#e6f2ed" }]}
-                onPress={async () => {
-                  await requestNotificationPermission();
-                  await sendDailyAyahNotification();
+              <Switch
+                value={dailyAyah}
+                onValueChange={async (v) => {
+                  setDailyAyah(v);
+                  if (v) {
+                    await requestNotificationPermission();
+                    await sendDailyAyahNotification();
+                  }
                 }}
-              >
-                <Text style={{ fontSize: 12, color: colors.accent, fontWeight: "500" }}>
-                  Aktif Et
-                </Text>
-              </TouchableOpacity>
+                trackColor={{ true: colors.accent }}
+              />
             }
             colors={colors}
           />

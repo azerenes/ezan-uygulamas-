@@ -1,9 +1,11 @@
+import { hadithAnswers } from "./hadithAnswers";
+
 export interface QuranAnswer {
   question: string;
   keywords: string[];
   answer: string;
   surah: string;
-  ayah: string;
+  ayah?: string;
   arabic: string;
 }
 
@@ -446,8 +448,7 @@ const generalResponse: QuranAnswer = {
   question: "Genel sorular",
   keywords: [""],
   answer: "Bu konu hakkında Kur'an'da genel bir rehberlik bulunmaktadır. Kur'an, 'Doğrusu bu Kur'an, en doğru yola iletir ve salih ameller işleyen müminlere büyük bir mükafat olduğunu müjdeler.' buyrulur. Her konuda Allah'a danışmak ve Kur'an'a yönelmek en doğrusudur. Daha spesifik bir soru sormak istersen, önerilen sorulardan birini seçebilir veya sorunu daha açık bir şekilde yazabilirsin.",
-  surah: "İsra",
-  ayah: "9",
+  surah: "İsra Suresi, 9",
   arabic: "إِنَّ هَٰذَا الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ"
 };
 
@@ -460,34 +461,40 @@ function wordBoundaryCheck(text: string, keyword: string): boolean {
   return regex.test(text);
 }
 
-export function findQuranAnswer(question: string): QuranAnswer {
+function scoreItem(
+  lower: string,
+  keywords: string[],
+  weight: number
+): number {
+  let score = 0;
+  for (const kw of keywords) {
+    if (wordBoundaryCheck(lower, kw)) {
+      score += weight;
+    }
+    if (lower.includes(kw)) {
+      score += Math.round(weight / 2);
+    }
+  }
+  const words = lower.split(/\s+/);
+  for (const w of words) {
+    if (w.length < 3) continue;
+    for (const kw of keywords) {
+      if (kw.includes(w) && w.length >= kw.length / 2) {
+        score += Math.round(weight / 4);
+      }
+    }
+  }
+  return score;
+}
+
+export function findQuranAnswer(question: string, includeHadith = true): QuranAnswer {
   const lower = question.toLowerCase().trim().replace(/[?.,!]+$/, "");
 
   let bestExact: QuranAnswer | null = null;
   let bestExactScore = -1;
 
   for (const item of quranAnswers) {
-    let score = 0;
-
-    for (const kw of item.keywords) {
-      if (wordBoundaryCheck(lower, kw)) {
-        score += 20;
-      }
-      if (lower.includes(kw)) {
-        score += 10;
-      }
-    }
-
-    const words = lower.split(/\s+/);
-    for (const w of words) {
-      if (w.length < 3) continue;
-      for (const kw of item.keywords) {
-        if (kw.includes(w) && w.length >= kw.length / 2) {
-          score += 5;
-        }
-      }
-    }
-
+    const score = scoreItem(lower, item.keywords, 20);
     if (score > bestExactScore) {
       bestExactScore = score;
       bestExact = item;
@@ -500,35 +507,14 @@ export function findQuranAnswer(question: string): QuranAnswer {
   let bestFallbackScore = -1;
 
   for (const fb of fallbackAnswers) {
-    let score = 0;
-
-    for (const kw of fb.keywords) {
-      if (wordBoundaryCheck(lower, kw)) {
-        score += 15;
-      }
-      if (lower.includes(kw)) {
-        score += 8;
-      }
-    }
-
-    const words = lower.split(/\s+/);
-    for (const w of words) {
-      if (w.length < 3) continue;
-      for (const kw of fb.keywords) {
-        if (kw.includes(w) && w.length >= kw.length / 2) {
-          score += 3;
-        }
-      }
-    }
-
+    const score = scoreItem(lower, fb.keywords, 15);
     if (score > bestFallbackScore) {
       bestFallbackScore = score;
       bestFallback = {
         question: fb.keywords[0] || "Konu",
         keywords: fb.keywords,
         answer: fb.answer,
-        surah: fb.surah,
-        ayah: fb.ayah,
+        surah: `${fb.surah} Suresi, ${fb.ayah}`,
         arabic: fb.arabic,
       };
     }
@@ -536,7 +522,51 @@ export function findQuranAnswer(question: string): QuranAnswer {
 
   if (bestFallbackScore > 0) return bestFallback!;
 
+  if (includeHadith) {
+    let bestHadith: QuranAnswer | null = null;
+    let bestHadithScore = -1;
+
+    for (const h of hadithAnswers) {
+      const score = scoreItem(lower, h.keywords, 15);
+      if (score > bestHadithScore) {
+        bestHadithScore = score;
+        bestHadith = {
+          question: h.keywords[0] || "Konu",
+          keywords: h.keywords,
+          answer: h.answer,
+          surah: h.source,
+          arabic: "عَنْ رَسُولِ اللَّهِ صلى الله عليه وسلم",
+        };
+      }
+    }
+
+    if (bestHadithScore > 0) return bestHadith!;
+  }
+
   return generalResponse;
+}
+
+export function findHadithAnswer(question: string): QuranAnswer | null {
+  const lower = question.toLowerCase().trim().replace(/[?.,!]+$/, "");
+
+  let best: QuranAnswer | null = null;
+  let bestScore = -1;
+
+  for (const h of hadithAnswers) {
+    const score = scoreItem(lower, h.keywords, 20);
+    if (score > bestScore) {
+      bestScore = score;
+      best = {
+        question: h.keywords[0] || "Konu",
+        keywords: h.keywords,
+        answer: h.answer,
+        surah: h.source,
+        arabic: "عَنْ رَسُولِ اللَّهِ صلى الله عليه وسلم",
+      };
+    }
+  }
+
+  return bestScore > 0 ? best : null;
 }
 
 export function suggestQuestions(): string[] {

@@ -8,10 +8,12 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  Switch,
 } from "react-native";
 import { useTheme } from "../context/ThemeContext";
 import {
   findQuranAnswer,
+  findHadithAnswer,
   suggestQuestions,
   type QuranAnswer,
 } from "../data/quranAnswers";
@@ -22,13 +24,14 @@ export default function QuranScreen() {
   const [answer, setAnswer] = useState<QuranAnswer | null>(null);
   const [hasAsked, setHasAsked] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(true);
+  const [includeHadith, setIncludeHadith] = useState(true);
 
   const suggestions = suggestQuestions();
 
   function handleAsk(q?: string) {
     const text = (q || question).trim();
     if (!text) return;
-    const result = findQuranAnswer(text);
+    const result = findQuranAnswer(text, includeHadith);
     setAnswer(result);
     setHasAsked(true);
     setShowSuggestions(false);
@@ -63,10 +66,6 @@ export default function QuranScreen() {
           <Text style={[styles.qaTitle, { color: colors.fg }]}>
             İslam hakkında merak ettiğin her şeyi sor
           </Text>
-          <Text style={[styles.qaSubtitle, { color: colors.muted }]}>
-            28'den fazla konuda Kur'an ayetleriyle cevaplıyorum. Namaz, oruç,
-            haramlar, farzlar, İslam'ın şartları ve daha fazlası.
-          </Text>
 
           <View style={styles.inputRow}>
             <TextInput
@@ -94,6 +93,17 @@ export default function QuranScreen() {
             >
               <Text style={styles.askBtnText}>Sor</Text>
             </TouchableOpacity>
+          </View>
+
+          <View style={styles.hadithToggle}>
+            <Text style={{ fontSize: 13, color: colors.muted }}>
+              Hadisleri dahil et
+            </Text>
+            <Switch
+              value={includeHadith}
+              onValueChange={setIncludeHadith}
+              trackColor={{ true: colors.accent }}
+            />
           </View>
 
           {showSuggestions && suggestions.length > 0 && !hasAsked && (
@@ -154,7 +164,7 @@ export default function QuranScreen() {
                     {answer.answer}
                   </Text>
                   <Text style={[styles.answerSource, { color: colors.accentGreen }]}>
-                    {answer.surah} Suresi, {answer.ayah}
+                    {answer.surah}
                   </Text>
                 </>
               ) : (
@@ -180,9 +190,9 @@ export default function QuranScreen() {
         </View>
 
         <View style={[styles.infoCard, { backgroundColor: colors.surface, borderColor: colors.border, marginTop: 16 }]}>
-          <Text style={[styles.infoTitle, { color: colors.fg }]}>📖 114 Sure</Text>
+          <Text style={[styles.infoTitle, { color: colors.fg }]}>📖 114 Sure · 104 Ayet · 20 Hadis</Text>
           <Text style={[styles.infoDesc, { color: colors.muted }]}>
-            Kur'an-ı Kerim'de 114 sure, 6236 ayet bulunur. Uygulamada tüm sureler, 104 günlük ayet ve 46 İslami soru-cevap mevcuttur. Ayet ve sureleri Ana Sayfa'da görebilirsin.
+            Kur'an-ı Kerim'de 114 sure, 6236 ayet bulunur. Uygulamada tüm sureler, 104 günlük ayet, İslami soru-cevaplar ve 20 hadis mevcuttur. Hadisleri aç/kapa butonu ile kontrol edebilirsin. Ayet ve sureleri Ana Sayfa'da görebilirsin.
           </Text>
         </View>
       </ScrollView>
@@ -196,12 +206,12 @@ const styles = StyleSheet.create({
   header: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 4, marginBottom: 8 },
   headerTitle: { fontSize: 20, fontWeight: "700", flex: 1 },
   qaSection: { borderRadius: 18, borderWidth: 1, padding: 20 },
-  qaTitle: { fontSize: 18, fontWeight: "700", marginBottom: 4 },
-  qaSubtitle: { fontSize: 13, marginBottom: 16, lineHeight: 20 },
-  inputRow: { flexDirection: "row", gap: 8, marginBottom: 12 },
+  qaTitle: { fontSize: 18, fontWeight: "700", marginBottom: 12 },
+  inputRow: { flexDirection: "row", gap: 8, marginBottom: 8 },
   input: { flex: 1, borderRadius: 12, paddingHorizontal: 16, paddingVertical: 12, fontSize: 14, borderWidth: 1 },
   askBtn: { borderRadius: 12, paddingHorizontal: 20, alignItems: "center", justifyContent: "center" },
   askBtnText: { color: "#fff", fontWeight: "600", fontSize: 15 },
+  hadithToggle: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 12, paddingHorizontal: 4 },
   suggestions: { marginBottom: 8 },
   suggestTitle: { fontSize: 12, fontWeight: "500", marginBottom: 8 },
   suggestionChips: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
