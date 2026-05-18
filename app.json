@@ -23,6 +23,7 @@
       }
     },
     "android": {
+      "package": "com.salah.ezantakip",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
