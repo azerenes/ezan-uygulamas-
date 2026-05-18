@@ -15,14 +15,11 @@ import {
   suggestQuestions,
   type QuranAnswer,
 } from "../data/quranAnswers";
-import { getRandomAyah, dailyAyahs } from "../data/ayahs";
 
 export default function QuranScreen() {
   const { colors, isDark } = useTheme();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState<QuranAnswer | null>(null);
-  const [showAyah, setShowAyah] = useState(true);
-  const [currentAyah, setCurrentAyah] = useState(dailyAyahs[0]);
   const [hasAsked, setHasAsked] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(true);
 
@@ -35,11 +32,6 @@ export default function QuranScreen() {
     setAnswer(result);
     setHasAsked(true);
     setShowSuggestions(false);
-  }
-
-  function refreshAyah() {
-    setCurrentAyah(getRandomAyah());
-    setShowAyah(true);
   }
 
   function handleSuggestion(s: string) {
@@ -55,77 +47,8 @@ export default function QuranScreen() {
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.header}>
           <Text style={[styles.headerTitle, { color: colors.fg }]}>
-            Kur'an
+            🤖 Kur'an AI
           </Text>
-        </View>
-
-        <View
-          style={[
-            styles.ayahCard,
-            {
-              backgroundColor: colors.surface,
-              borderColor: colors.border,
-            },
-          ]}
-        >
-          <View style={styles.ayahHeader}>
-            <Text style={[styles.ayahHeaderLabel, { color: colors.accent }]}>
-              {showAyah ? currentAyah.surah : "Günün Ayeti"}
-            </Text>
-            <TouchableOpacity
-              onPress={refreshAyah}
-              style={[styles.refreshBtn, { backgroundColor: isDark ? colors.surfaceAlt : "#e6f2ed" }]}
-            >
-              <Text style={{ fontSize: 12, color: colors.accent, fontWeight: "500" }}>
-                🔄 Yenile
-              </Text>
-            </TouchableOpacity>
-          </View>
-          {showAyah && (
-            <>
-              <Text
-                style={[
-                  styles.ayahArabic,
-                  {
-                    color: colors.fg,
-                  },
-                ]}
-              >
-                {currentAyah.text}
-              </Text>
-              <Text
-                style={[
-                  styles.ayahTranslation,
-                  {
-                    color: colors.muted,
-                  },
-                ]}
-              >
-                {currentAyah.translation}
-              </Text>
-              <Text
-                style={[
-                  styles.ayahReference,
-                  { color: colors.accentGreen },
-                ]}
-              >
-                {currentAyah.surah} {currentAyah.ayah}
-              </Text>
-            </>
-          )}
-          {!showAyah && (
-            <TouchableOpacity onPress={refreshAyah}>
-              <Text
-                style={{
-                  fontSize: 14,
-                  color: colors.muted,
-                  textAlign: "center",
-                }}
-              >
-                Günün ayetini görmek için dokun
-              </Text>
-            </TouchableOpacity>
-          )}
         </View>
 
         <View
@@ -138,11 +61,11 @@ export default function QuranScreen() {
           ]}
         >
           <Text style={[styles.qaTitle, { color: colors.fg }]}>
-            🤖 Kur'an AI
+            İslam hakkında merak ettiğin her şeyi sor
           </Text>
           <Text style={[styles.qaSubtitle, { color: colors.muted }]}>
-            İslam ve Kur'an hakkında merak ettiğin her şeyi sor. Kur'an
-            ayetleriyle cevaplıyorum.
+            28'den fazla konuda Kur'an ayetleriyle cevaplıyorum. Namaz, oruç,
+            haramlar, farzlar, İslam'ın şartları ve daha fazlası.
           </Text>
 
           <View style={styles.inputRow}>
@@ -216,72 +139,51 @@ export default function QuranScreen() {
                 },
               ]}
             >
-              <View style={styles.answerHeader}>
-                <Text style={[styles.answerQ, { color: colors.fg }]}>
-                  ❓ {question}
-                </Text>
-              </View>
+              <Text style={[styles.answerQ, { color: colors.fg }]}>
+                ❓ {question}
+              </Text>
               <View
-                style={[
-                  styles.answerDivider,
-                  { backgroundColor: colors.border },
-                ]}
+                style={[styles.answerDivider, { backgroundColor: colors.border }]}
               />
               {answer ? (
                 <>
-                  <Text
-                    style={[
-                      styles.answerArabic,
-                      {
-                        color: colors.fg,
-                      },
-                    ]}
-                  >
+                  <Text style={[styles.answerArabic, { color: colors.fg }]}>
                     {answer.arabic}
                   </Text>
-                  <Text
-                    style={[styles.answerText, { color: colors.fg }]}
-                  >
+                  <Text style={[styles.answerText, { color: colors.fg }]}>
                     {answer.answer}
                   </Text>
-                  <Text
-                    style={[
-                      styles.answerSource,
-                      { color: colors.accentGreen },
-                    ]}
-                  >
+                  <Text style={[styles.answerSource, { color: colors.accentGreen }]}>
                     {answer.surah} Suresi, {answer.ayah}
                   </Text>
                 </>
               ) : (
                 <Text style={[styles.answerText, { color: colors.muted }]}>
                   Bu soruya henüz bir cevap bulamadım. Lütfen farklı bir
-                  şekilde sormayı dene veya önerilen sorulardan birini dene.
+                  şekilde sormayı dene veya önerilen sorulardan birini seç.
                 </Text>
               )}
               <TouchableOpacity
-                style={[
-                  styles.newQuestionBtn,
-                  { borderColor: colors.accent },
-                ]}
+                style={[styles.newQuestionBtn, { borderColor: colors.accent }]}
                 onPress={() => {
                   setHasAsked(false);
                   setQuestion("");
                   setShowSuggestions(true);
                 }}
               >
-                <Text
-                  style={{
-                    fontSize: 14,
-                    color: colors.accent,
-                    fontWeight: "500",
-                  }}
-                >
+                <Text style={{ fontSize: 14, color: colors.accent, fontWeight: "500" }}>
                   Yeni Soru Sor
                 </Text>
               </TouchableOpacity>
             </View>
           )}
+        </View>
+
+        <View style={[styles.infoCard, { backgroundColor: colors.surface, borderColor: colors.border, marginTop: 16 }]}>
+          <Text style={[styles.infoTitle, { color: colors.fg }]}>📖 114 Sure</Text>
+          <Text style={[styles.infoDesc, { color: colors.muted }]}>
+            Kur'an-ı Kerim'de 114 sure, 6236 ayet bulunur. Uygulamada tüm surelerin listesi, 52 günlük ayet ve 28 İslami soru-cevap mevcuttur. Ayet ve sureleri Ana Sayfa'da görebilirsin.
+          </Text>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -291,105 +193,27 @@ export default function QuranScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   content: { padding: 16, paddingBottom: 32 },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    paddingVertical: 4,
-    marginBottom: 8,
-  },
+  header: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 4, marginBottom: 8 },
   headerTitle: { fontSize: 20, fontWeight: "700", flex: 1 },
-  ayahCard: {
-    borderRadius: 18,
-    borderWidth: 1,
-    padding: 20,
-    marginBottom: 20,
-  },
-  ayahHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 12,
-  },
-  ayahHeaderLabel: { fontSize: 14, fontWeight: "600" },
-  refreshBtn: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 20,
-  },
-  ayahArabic: {
-    fontSize: 24,
-    lineHeight: 40,
-    textAlign: "center",
-    marginBottom: 12,
-    fontFamily: "serif",
-  },
-  ayahTranslation: {
-    fontSize: 15,
-    lineHeight: 24,
-    textAlign: "center",
-    marginBottom: 8,
-  },
-  ayahReference: { fontSize: 12, fontWeight: "500", textAlign: "center" },
-  qaSection: {
-    borderRadius: 18,
-    borderWidth: 1,
-    padding: 20,
-  },
+  qaSection: { borderRadius: 18, borderWidth: 1, padding: 20 },
   qaTitle: { fontSize: 18, fontWeight: "700", marginBottom: 4 },
   qaSubtitle: { fontSize: 13, marginBottom: 16, lineHeight: 20 },
   inputRow: { flexDirection: "row", gap: 8, marginBottom: 12 },
-  input: {
-    flex: 1,
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    fontSize: 14,
-    borderWidth: 1,
-  },
-  askBtn: {
-    borderRadius: 12,
-    paddingHorizontal: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  input: { flex: 1, borderRadius: 12, paddingHorizontal: 16, paddingVertical: 12, fontSize: 14, borderWidth: 1 },
+  askBtn: { borderRadius: 12, paddingHorizontal: 20, alignItems: "center", justifyContent: "center" },
   askBtnText: { color: "#fff", fontWeight: "600", fontSize: 15 },
   suggestions: { marginBottom: 8 },
   suggestTitle: { fontSize: 12, fontWeight: "500", marginBottom: 8 },
-  suggestionChips: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 8,
-  },
-  chip: {
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 1,
-  },
-  answerCard: {
-    marginTop: 8,
-    padding: 16,
-    borderRadius: 14,
-    borderWidth: 1,
-  },
-  answerHeader: { marginBottom: 4 },
-  answerQ: { fontSize: 14, fontWeight: "600" },
+  suggestionChips: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
+  chip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 20, borderWidth: 1 },
+  answerCard: { marginTop: 8, padding: 16, borderRadius: 14, borderWidth: 1 },
+  answerQ: { fontSize: 14, fontWeight: "600", marginBottom: 4 },
   answerDivider: { height: 1, marginVertical: 12 },
-  answerArabic: {
-    fontSize: 20,
-    lineHeight: 36,
-    textAlign: "right",
-    marginBottom: 12,
-    fontFamily: "serif",
-  },
+  answerArabic: { fontSize: 20, lineHeight: 36, textAlign: "right", marginBottom: 12, fontFamily: "serif" },
   answerText: { fontSize: 15, lineHeight: 24 },
   answerSource: { fontSize: 12, fontWeight: "500", marginTop: 8 },
-  newQuestionBtn: {
-    marginTop: 16,
-    paddingVertical: 10,
-    borderRadius: 12,
-    borderWidth: 1,
-    alignItems: "center",
-  },
+  newQuestionBtn: { marginTop: 16, paddingVertical: 10, borderRadius: 12, borderWidth: 1, alignItems: "center" },
+  infoCard: { borderRadius: 12, borderWidth: 1, padding: 16 },
+  infoTitle: { fontSize: 15, fontWeight: "600", marginBottom: 4 },
+  infoDesc: { fontSize: 13, lineHeight: 19 },
 });
