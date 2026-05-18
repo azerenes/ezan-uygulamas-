@@ -1,0 +1,33 @@
+export const colors = {
+  bg: "#f6f7f9",
+  surface: "#ffffff",
+  fg: "#282a36",
+  muted: "#7a7e8e",
+  border: "#e3e5eb",
+  accent: "#2ea885",
+  accentWarm: "#d49738",
+  accentGreen: "#3a8b5e",
+  success: "#4aae6b",
+  warning: "#d49738",
+  danger: "#c0393f",
+  surfaceAlt: "#f0f5f2",
+  cardShadow: "rgba(0,0,0,0.06)",
+  fontArabic: "serif",
+};
+
+export const darkColors: typeof colors = {
+  bg: "#16181e",
+  surface: "#1e2129",
+  fg: "#e8eaed",
+  muted: "#9a9eae",
+  border: "#2d303a",
+  accent: "#3bc99f",
+  accentWarm: "#e8a840",
+  accentGreen: "#4cbf78",
+  success: "#5ccf7b",
+  warning: "#e8a840",
+  danger: "#d9555b",
+  surfaceAlt: "#1a1d24",
+  cardShadow: "rgba(0,0,0,0.2)",
+  fontArabic: "serif",
+};
