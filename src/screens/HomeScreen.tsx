@@ -45,7 +45,7 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
       <View style={styles.content}>
         <View style={styles.header}>
           <Text style={[styles.logo, { color: colors.fg }]}>
-            Ṣalāh<Text style={{ color: colors.accent }}>.</Text>
+            EZANTAKİPPRO
           </Text>
           <TouchableOpacity
             style={[styles.settingsBtn, { backgroundColor: colors.surface, borderColor: colors.border }]}

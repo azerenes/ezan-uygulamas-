@@ -2,7 +2,7 @@
   <img src="https://img.icons8.com/fluency/96/null/islam.png" width="80" />
 </p>
 
-<h1 align="center">Ṣalāh — Ezan Takip</h1>
+<h1 align="center">EZANTAKİPPRO</h1>
 
 <p align="center">
   <strong>Modern ve kapsamlı namaz vakti uygulaması</strong>
@@ -134,7 +134,7 @@ MIT © 2026 — azerenes
 ---
 
 <p align="center">
-  <sub>Ṣalāh — İslam'ın ruhunu teknolojiyle buluşturan uygulama</sub>
+  <sub>EZANTAKİPPRO — İslam'ın ruhunu teknolojiyle buluşturan uygulama</sub>
   <br>
   <sub>Her namaz bir huzur, her dua bir umuttur.</sub>
 </p>

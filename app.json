@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Ṣalāh - Ezan Takip",
-    "slug": "ezan-takip",
+    "name": "EZANTAKİPPRO",
+    "slug": "ezantakippro",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,7 +23,7 @@
       }
     },
     "android": {
-      "package": "com.salah.ezantakip",
+      "package": "com.ezantakippro.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -52,9 +52,9 @@
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Ṣalāh namaz vakitlerini doğru hesaplamak için konumunuza erişmek istiyor.",
-          "locationAlwaysPermission": "Ṣalāh arka planda namaz vakitlerini güncellemek için konumunuza erişmek istiyor.",
-          "locationWhenInUsePermission": "Ṣalāh namaz vakitlerini hesaplamak için konumunuzu kullanmak istiyor."
+          "locationAlwaysAndWhenInUsePermission": "EZANTAKİPPRO namaz vakitlerini doğru hesaplamak için konumunuza erişmek istiyor.",
+          "locationAlwaysPermission": "EZANTAKİPPRO arka planda namaz vakitlerini güncellemek için konumunuza erişmek istiyor.",
+          "locationWhenInUsePermission": "EZANTAKİPPRO namaz vakitlerini hesaplamak için konumunuzu kullanmak istiyor."
         }
       ]
     ],
