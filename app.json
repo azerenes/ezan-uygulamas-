@@ -23,7 +23,7 @@
       }
     },
     "android": {
-      "package": "com.ezantakippro.mobile",
+      "package": "com.ezantakippro",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
